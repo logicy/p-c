@@ -60,4 +60,28 @@ pc('cbad', {length:2, repeatChars:false}); // [ 'ab', 'ac', 'ad', 'ba', 'bc', 'b
 pc('cbad', {length:2, sortChars:false, repeatChars:false}); // [ 'cb', 'ca', 'cd', 'bc', 'ba', 'bd', 'ac', 'ab', 'ad', 'dc', 'db', 'da' ]
 ```
 
+
+## Defaults
+
+* repeatChars: true
+* sortChars: true
+* length: length of input string
+
 ## Examples explained in AMAP detail
+
+AMAP: as much as possible :wink:
+
+1. `var string = 'cab'; pc(string).list();`
+	* will produce same result if `string = 'cba'` or `'abc'` or `'acb'` ..
+	* Objective: get an array of all the permutations made by characters (sorted) of input `string`
+	* process:
+		* save length of string
+		* find distinct characters, sort these
+		* repeat is ON
+		* push permutations of saved length in array, return it
+* `var string = 'cab'; pc(string).rank();`
+	* will **NOT** produce same result if `string = 'cba'` or `'abc'` or `'acb'` ..
+	* Objective: find position of input `string` in such `list()`
+	* notes:
+		* other than string's length is not recommended
+		* sortChars=false is highly discouraged, while `rank()`, BECAUSE you will get 1 always.
