@@ -1,0 +1,25 @@
+{
+  "name": "p-c",
+  "version": "1.0.0",
+  "description": "permutation, combination and lot more.",
+  "main": "pc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logicy/p-c.git"
+  },
+  "keywords": [
+    "permutation",
+    "combination",
+    "name",
+    "rank"
+  ],
+  "author": "Sushil Kumar Jain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/logicy/p-c/issues"
+  },
+  "homepage": "https://github.com/logicy/p-c#readme"
+}
