@@ -1,6 +1,6 @@
 {
   "name": "p-c",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "permutation, combination and lot more.",
   "main": "pc.js",
   "scripts": {
