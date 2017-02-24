@@ -9,7 +9,7 @@ npm install p-c
 
 ## Usage
 
-```
+```javascript
 var pc = require('p-c');
 
 pc('cab').list(); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
@@ -37,11 +37,20 @@ pc('cbad', 2).list() // [ 'aa', 'ab', 'ac', 'ad', 'ba', 'bb', 'bc', 'bd', 'ca', 
 ```
 ## Notes
 
-all 3: pc(args), pc.permute(args) & pc.name(args) are equivalent
+all 3: `pc(args)`, `pc.permute(args)` & `pc.name(args)` are equivalent
 
-args: param1
-args: param1, len(number)
-args: param1, opts(object)
+* args: param1
+* args: param1, len(number)
+* args: param1, opts(object)
 
-param1: string // string or convertible to string
-param1: array  // array of chars // joined using no seperator
+* param1: string // string or convertible to string
+* param1: array  // array of chars // joined using no seperator
+
+## Advanced
+
+```javascript
+//examples with opts
+pc('cbad', {length:2, sortChars:false}); // [ 'cc', 'cb', 'ca', 'cd', 'bc', 'bb', 'ba', 'bd', 'ac', 'ab', 'aa', 'ad', 'dc', 'db', 'da', 'dd' ]
+pc('cbad', {length:2, repeatChars:false}); // [ 'ab', 'ac', 'ad', 'ba', 'bc', 'bd', 'ca', 'cb', 'cd', 'da', 'db', 'dc' ]
+pc('cbad', {length:2, sortChars:false, repeatChars:false}); // [ 'cb', 'ca', 'cd', 'bc', 'ba', 'bd', 'ac', 'ab', 'ad', 'dc', 'db', 'da' ]
+```
