@@ -12,16 +12,21 @@ npm install p-c
 ```javascript
 var pc = require('p-c');
 
-pc('cab').list(); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
-pc(10).list(); // [ '01', '10' ]
-pc(['a','b']).list(); // [ 'ab', 'ba' ]
-pc(['c','b']).list(); // [ 'bc', 'cb' ]
-pc('cacb').list(); // [ 'abcc', 'acbc', 'accb', 'bacc', 'bcac', 'bcca', 'cabc', 'cacb', 'cbac', 'cbca', 'ccab', 'ccba' ]
+pc('cab').list(); /* [ 'aaa', 'aab', 'aac', 'aba', 'abb', 'abc', 'aca', 'acb', 'acc', 'baa', 'bab', 'bac', 'bba',
+  'bbb', 'bbc', 'bca', 'bcb', 'bcc', 'caa', 'cab', 'cac', 'cba', 'cbb', 'cbc', 'cca', 'ccb', 'ccc' ] */
+pc(10).list(); // [ '00', '01', '10', '11' ]
+pc(['a','b']).list(); /* [ 'aa', 'ab', 'ba', 'bb' ] */
+pc(['c','b']).list(); /* [ 'bb', 'bc', 'cb', 'cc' ] */
+pc('cacb').list(); /* [ 'aaaa', 'aaab', 'aaac', 'aaba', 'aabb', 'aabc', 'aaca', 'aacb', 'aacc', 'abaa', 'abab', 'abac',
+ ... ,
+ 'cbbc', 'cbca', 'cbcb', 'cbcc', 'ccaa', 'ccab', 'ccac', 'ccba', 'ccbb', 'ccbc', 'ccca', 'cccb', 'cccc' ]
+ 81 permutations */
 
-pc('cab').rank(); // 5
-pc('cacb').rank(); // 8
+pc('cab').rank(); // 19
+pc('cacb').rank(); // 61
 
-pc('cab').count(); // 6
+pc('cab').count(); // 27 (= 3^3)
+pc('cacb').count(); // 81 (= 3^4)
 
 var result = pc.permute('cab'); // returns an object
 result.count();
@@ -54,3 +59,5 @@ pc('cbad', {length:2, sortChars:false}); // [ 'cc', 'cb', 'ca', 'cd', 'bc', 'bb'
 pc('cbad', {length:2, repeatChars:false}); // [ 'ab', 'ac', 'ad', 'ba', 'bc', 'bd', 'ca', 'cb', 'cd', 'da', 'db', 'dc' ]
 pc('cbad', {length:2, sortChars:false, repeatChars:false}); // [ 'cb', 'ca', 'cd', 'bc', 'ba', 'bd', 'ac', 'ab', 'ad', 'dc', 'db', 'da' ]
 ```
+
+## Examples explained in AMAP detail
