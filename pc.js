@@ -2,10 +2,12 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-24 11:52:20
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-27 18:11:04
+* @Last Modified time: 2017-02-27 18:43:11
 */
 
 'use strict';
+var fx = require('./functions');
+fx.rank = fx.findRankByString;
 
 const
 	TYPEOF_NUM = 'number',
@@ -61,7 +63,7 @@ ResultPC.prototype.count = function(opts) {
 
 ResultPC.prototype.rank = function(opts) {
 	//return number
-	return 295;
+	return fx.rank(this.string);
 };
 
 ResultPC.prototype.list = function(opts) {
