@@ -2,12 +2,13 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-24 11:52:20
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-27 18:43:11
+* @Last Modified time: 2017-02-27 18:59:47
 */
 
 'use strict';
 var fx = require('./functions');
 fx.rank = fx.findRankByString;
+fx.count = fx.permuteOver;
 
 const
 	TYPEOF_NUM = 'number',
@@ -58,7 +59,7 @@ ObjPC.names = function(string, opts) {
 
 ResultPC.prototype.count = function(opts) {
 	//return number
-	return 360;
+	return fx.count(this.string);
 };
 
 ResultPC.prototype.rank = function(opts) {

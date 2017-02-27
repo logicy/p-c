@@ -2,12 +2,13 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-27 18:38:23
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-27 18:38:57
+* @Last Modified time: 2017-02-27 18:58:58
 */
 
 'use strict';
 
 module.exports.findRankByString = function (input) {
+	var mexp = this;
 	input = input.toLowerCase();
 	if (input.length<=1) {
 		return 1;
@@ -61,7 +62,7 @@ module.exports.findRankByString = function (input) {
 					var temp = copyArray(sortedChars);
 					temp.splice(i,1);
 					// console.log('-->',combSum, doneChars);
-					combSum += permuteOver(temp);
+					combSum += mexp.permuteOver(temp);
 					doneChars.push(sortedChars[i]);
 				}
 			};
@@ -69,7 +70,8 @@ module.exports.findRankByString = function (input) {
 		// return combSum;
 	}
 
-	function permuteOver (chars) {
+}
+module.exports.permuteOver = function (chars) {
 		var n = chars.length;
 		var freq = {};
 		var deno = 1;
@@ -111,4 +113,3 @@ module.exports.findRankByString = function (input) {
 		}
 			return x * factorial(x-1);
 	}
-}
