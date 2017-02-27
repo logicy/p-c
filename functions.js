@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-27 18:38:23
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-27 18:58:58
+* @Last Modified time: 2017-02-27 19:04:17
 */
 
 'use strict';
@@ -72,44 +72,44 @@ module.exports.findRankByString = function (input) {
 
 }
 module.exports.permuteOver = function (chars) {
-		var n = chars.length;
-		var freq = {};
-		var deno = 1;
-		if(n<=1) {return 1};
-		for (var i = 0; i < chars.length; i++) {
-			if (freq[chars[i]]) {
-				freq[chars[i]]++;
-			} else{
-				freq[chars[i]] = 1;
-			}
-		};
-		for(var key in freq) { //reduce, map
-			if(freq[key]>1){
-				deno *= factorial(freq[key]);
-			}
-		};
-		return factorial(n)/deno;
-	}
-
-	function copyArray (arr) {
-		var t = [];
-		for (var i = 0; i < arr.length; i++) {
-			t.push(arr[i]);
-		};
-		return t;
-	}
-
-	function charInArray (c, arr) { //Array.includes //Array.indexOf
-		for (var i = 0; i < arr.length; i++) {
-			if(c==arr[i]){
-				return true;
-			}
-		};
-	}
-
-	function factorial(x) {
-		if(x==0) {
-			return 1;
+	var n = chars.length;
+	var freq = {};
+	var deno = 1;
+	if(n<=1) {return 1};
+	for (var i = 0; i < chars.length; i++) {
+		if (freq[chars[i]]) {
+			freq[chars[i]]++;
+		} else{
+			freq[chars[i]] = 1;
 		}
-			return x * factorial(x-1);
+	};
+	for(var key in freq) { //reduce, map
+		if(freq[key]>1){
+			deno *= factorial(freq[key]);
+		}
+	};
+	return factorial(n)/deno;
+}
+
+function copyArray (arr) {
+	var t = [];
+	for (var i = 0; i < arr.length; i++) {
+		t.push(arr[i]);
+	};
+	return t;
+}
+
+function charInArray (c, arr) { //Array.includes //Array.indexOf
+	for (var i = 0; i < arr.length; i++) {
+		if(c==arr[i]){
+			return true;
+		}
+	};
+}
+
+function factorial(x) {
+	if(x==0) {
+		return 1;
 	}
+		return x * factorial(x-1);
+}
