@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-24 11:52:20
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-24 19:34:05
+* @Last Modified time: 2017-02-27 18:11:04
 */
 
 'use strict';
@@ -36,6 +36,7 @@ var ObjPC = function (string, opts) {
 
 var ResultPC = function (len, string, opts) {
 	var res = this;
+	res.name = 'ResultPC';
 	res.len = len;
 	res.string = string;
 	res.opts = opts;
@@ -45,18 +46,22 @@ var ResultPC = function (len, string, opts) {
 
 ObjPC.permute = function(string, opts) {
 	//return this(filtered args)
+	return this(string, opts);
 };
 
 ObjPC.names = function(string, opts) {
 	//return this(filtered args)
+	return this(string, opts);
 };
 
 ResultPC.prototype.count = function(opts) {
 	//return number
+	return 360;
 };
 
 ResultPC.prototype.rank = function(opts) {
 	//return number
+	return 295;
 };
 
 ResultPC.prototype.list = function(opts) {
