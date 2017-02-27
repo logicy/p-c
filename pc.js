@@ -2,13 +2,14 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-24 11:52:20
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-27 18:59:47
+* @Last Modified time: 2017-02-27 19:11:33
 */
 
 'use strict';
 var fx = require('./functions');
 fx.rank = fx.findRankByString;
 fx.count = fx.permuteOver;
+fx.list = fx.listCombName;
 
 const
 	TYPEOF_NUM = 'number',
@@ -69,6 +70,7 @@ ResultPC.prototype.rank = function(opts) {
 
 ResultPC.prototype.list = function(opts) {
 	//return array
+	return fx.list(this.string);
 };
 
 exports = module.exports = ObjPC;

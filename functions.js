@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-27 18:38:23
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-27 19:04:17
+* @Last Modified time: 2017-02-27 19:09:39
 */
 
 'use strict';
@@ -89,6 +89,90 @@ module.exports.permuteOver = function (chars) {
 		}
 	};
 	return factorial(n)/deno;
+}
+module.exports.comb = function (len, states, rules){
+	if(!len || len<1){return []}
+	if(len>16){
+		// return "out of limit, put force if you know better";
+	}
+	var states = states || ["0","1"];
+	var pos = [];
+	var powers = [];
+	for (var i = 0; i < len; i++) { //Array(len).fill(0) 
+		pos.push(0);
+	};
+	var rule = rules && rules[0];
+	var ruleVal = 0;
+	for (var i = 0; i < states.length; i++) {
+		powers.push(Math.pow(len, i));
+		if (!!rule) {
+			ruleVal += rule[i]*powers[i];
+		} else {
+			ruleVal = rule;
+		}
+	};
+
+	var shouldBreak, str;
+	var output = [];
+	do{
+		shouldBreak = true;
+		str = "";var s=0;
+		for (var i = 0; i < len; i++) {
+			str+= states[pos[i]];
+			s+= powers[pos[i]];
+		};
+		// console.log('output',s, s==ruleVal, !ruleVal, str);
+		// console.log('output', str);
+		(!ruleVal || s==ruleVal) && output.push(str);
+		for (var i = len-1; i >= 0; i--) {
+			if(pos[i]<states.length-1){
+				pos[i]++; break;
+			}
+			if(pos[i]<states.length){
+				if (i==0) {
+					shouldBreak = false; break;
+				};
+				pos[i]=0;
+			}
+		};
+	}while(shouldBreak);
+	return output;
+}
+
+module.exports.listCombName = function (s) {
+	var mexp = this;
+	if (!s||s.length<1) {return comb(0);};
+	s = s.toLowerCase();
+	var sortedChars = [];
+	sortedChars[0] = s[0];
+
+	var rules = [];
+	var freq = rules[0] = [];
+
+	for (var i = 1,k=1; i < s.length; i++) {
+		if(charInArray(s[i], sortedChars)) {continue;}
+		sortedChars[k++] = s[i];
+		for (var j = i; j > 0; j--) {
+			if (sortedChars[j-1]>sortedChars[j]) {
+				var t = sortedChars[j];
+				sortedChars[j] = sortedChars[j-1];
+				sortedChars[j-1] = t;
+			};
+		}
+		// console.log(sortedChars);
+	};
+	for (var i = 0; i < sortedChars.length; i++) {
+		freq[i] = freqInString(sortedChars[i], s);
+	};
+	function freqInString (c, s) {
+		var r = 0;
+		for (var i = 0; i < s.length; i++) {
+			s[i] == c && r++;
+		};
+		return r;
+	}
+	// console.log(sortedChars, rules);
+	return mexp.comb(s.length, sortedChars, rules);
 }
 
 function copyArray (arr) {
