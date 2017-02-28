@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-27 18:38:23
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-27 19:09:39
+* @Last Modified time: 2017-02-28 15:00:08
 */
 
 'use strict';
@@ -141,7 +141,7 @@ module.exports.comb = function (len, states, rules){
 
 module.exports.listCombName = function (s) {
 	var mexp = this;
-	if (!s||s.length<1) {return comb(0);};
+	if (!s||s.length<1) {return mexp.comb(0);};
 	s = s.toLowerCase();
 	var sortedChars = [];
 	sortedChars[0] = s[0];
