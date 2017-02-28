@@ -12,17 +12,17 @@ npm install p-c
 ```
 npm test
 ```
-## Trying (after installing)
+## Start using (after installing) (trying)
 
 you can try as soon as you install the package with your own input. :smile:
 
 ```
-npm try
-npm try <method> <input-string>
-npm try rank rohan
-npm try count rohan
-npm try all rohan
-npm try list rohan
+npm start
+npm start <method> <input-string>
+npm start rank rohan
+npm start count rohan
+npm start all rohan
+npm start list rohan
 ```
 
 ## Usage

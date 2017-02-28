@@ -1,11 +1,11 @@
 {
   "name": "p-c",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "permutation, combination and lot more.",
   "main": "pc.js",
   "scripts": {
     "test": "node test.js",
-    "try": "node try.js"
+    "start": "node try.js"
   },
   "repository": {
     "type": "git",
