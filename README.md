@@ -7,6 +7,11 @@ permuations, combinations, rankName and lot more: (in development mode)
 ```
 npm install p-c
 ```
+## Testing (after installing)
+
+```
+npm test
+```
 
 ## Usage
 

@@ -4,7 +4,7 @@
   "description": "permutation, combination and lot more.",
   "main": "pc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
