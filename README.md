@@ -1,5 +1,6 @@
 # p-c
-permuations, combinations, rankName and lot more: npm module
+permuations, combinations, rankName and lot more: (in development mode)
+**all use cases not completed yet**
 
 ## Installation
 
