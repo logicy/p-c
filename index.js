@@ -6,7 +6,7 @@ var allMethods = ['rank', 'count', 'list'];
 function produce(args){
   var args = args || {};
   var method = args.action || 'all';
-  var string = args.string || '';
+  var string = args.string || 'asc';
 
   var methods = (method=='all' || allMethods.indexOf(method)<0) ? allMethods : [method];
 
@@ -21,6 +21,7 @@ app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(request, response) {
+  console.log('-----------------',JSON.stringify(request));
   response.send(JSON.stringify(produce(request.body)));
 })
 
