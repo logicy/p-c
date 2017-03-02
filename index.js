@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/public'))
 app.get('/', function(request, response) {
   var a = [request.query,request.body,request.params,request.path,request.hostname];
   console.log('-----------------',JSON.stringify(a));
-  response.send(JSON.stringify(produce(request.body||request.query)));
+  response.send(JSON.stringify(produce(Object.keys(request.body).length === 0 ? request.body : request.query)));
 })
 
 app.listen(app.get('port'), function() {
