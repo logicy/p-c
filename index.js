@@ -21,8 +21,8 @@ app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(request, response) {
-  //var a = [request.query,request.body,request.params,request.path,request.hostname];
-  //console.log('-----------------',JSON.stringify(a));
+  var a = [request.query,request.body,request.params,request.path,request.hostname];
+  console.log('-----------------',JSON.stringify(a));
   response.send(JSON.stringify(produce(request.body)));
 })
 
