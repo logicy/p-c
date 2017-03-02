@@ -22,7 +22,7 @@ function produce(args){
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
-app.use(express.bodyParser());
+// app.use(express.bodyParser());
 app.get('/', function(request, response) {
   var a = [request.query,request.body,request.params,request.path,request.hostname];
   console.log('-----------------',JSON.stringify(a));
