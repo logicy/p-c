@@ -10,7 +10,7 @@ function produce(args){
 
   var methods = (method=='all' || allMethods.indexOf(method)<0) ? allMethods : [method];
 
-  var output = {};
+  var output = {input:args};
   methods.map(function (method) {
     output[method] = pc(string)[method]();
   })
