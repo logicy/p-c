@@ -15,25 +15,26 @@ module.exports.findRankByString = function (input) {
 	};
 
 	var charsName = [];
-	for (var i = 0; i < input.length; i++) { //Array.from(input)
-		charsName.push(input[i]);
-	};
+	charsName = Array.from(input);
+	// for (var i = 0; i < input.length; i++) { //Array.from(input)
+	// 	charsName.push(input[i]);
+	// };
 
 	// console.log(charsName);
 	
 	var sortedChars = [];
 
-
-	sortedChars = copyArray(charsName);
-	for (var i = 1; i < charsName.length; i++) { //Array.from('sushil').sort()
-		for (var j = i; j > 0; j--) {
-			if (sortedChars[j-1]>sortedChars[j]) {
-				var t = sortedChars[j];
-				sortedChars[j] = sortedChars[j-1];
-				sortedChars[j-1] = t;
-			};
-		}
-	};
+	sortedChars = Array.from(input).sort();
+	// sortedChars = copyArray(charsName);
+	// for (var i = 1; i < charsName.length; i++) { //Array.from('sushil').sort()
+	// 	for (var j = i; j > 0; j--) {
+	// 		if (sortedChars[j-1]>sortedChars[j]) {
+	// 			var t = sortedChars[j];
+	// 			sortedChars[j] = sortedChars[j-1];
+	// 			sortedChars[j-1] = t;
+	// 		};
+	// 	}
+	// };
 
 	// console.log(charsName);
 	// console.log(sortedChars);
@@ -58,7 +59,7 @@ module.exports.findRankByString = function (input) {
 					// console.log(chars, sortedChars, combSum, doneChars)
 					return findPartialByCharsSorted(chars, sortedChars, combSum);
 					// break;
-				} else if ( !charInArray(sortedChars[i], doneChars)){
+				} else if ( doneChars.indexOf(sortedChars[i])<0 ){
 					var temp = copyArray(sortedChars);
 					temp.splice(i,1);
 					// console.log('-->',combSum, doneChars);
@@ -93,14 +94,15 @@ module.exports.permuteOver = function (chars) {
 module.exports.comb = function (len, states, rules){
 	if(!len || len<1){return []}
 	if(len>16){
-		// return "out of limit, put force if you know better";
+		return "out of limit, put force if you know better";
 	}
 	var states = states || ["0","1"];
 	var pos = [];
 	var powers = [];
-	for (var i = 0; i < len; i++) { //Array(len).fill(0) 
-		pos.push(0);
-	};
+	pos = Array(len).fill(0);
+	// for (var i = 0; i < len; i++) { //Array(len).fill(0) 
+	// 	pos.push(0);
+	// };
 	var rule = rules && rules[0];
 	var ruleVal = 0;
 	for (var i = 0; i < states.length; i++) {
@@ -149,18 +151,19 @@ module.exports.listCombName = function (s) {
 	var rules = [];
 	var freq = rules[0] = [];
 
-	for (var i = 1,k=1; i < s.length; i++) {
-		if(charInArray(s[i], sortedChars)) {continue;}
-		sortedChars[k++] = s[i];
-		for (var j = i; j > 0; j--) {
-			if (sortedChars[j-1]>sortedChars[j]) {
-				var t = sortedChars[j];
-				sortedChars[j] = sortedChars[j-1];
-				sortedChars[j-1] = t;
-			};
-		}
-		// console.log(sortedChars);
-	};
+	sortedChars = Array.from(s).sort().filter(onlyUnique);
+	// for (var i = 1,k=1; i < s.length; i++) {
+	// 	if(sortedChars.indexOf(s[i])>=0) {continue;}
+	// 	sortedChars[k++] = s[i];
+	// 	for (var j = i; j > 0; j--) {
+	// 		if (sortedChars[j-1]>sortedChars[j]) {
+	// 			var t = sortedChars[j];
+	// 			sortedChars[j] = sortedChars[j-1];
+	// 			sortedChars[j-1] = t;
+	// 		};
+	// 	}
+	// 	// console.log(sortedChars);
+	// };
 	for (var i = 0; i < sortedChars.length; i++) {
 		freq[i] = freqInString(sortedChars[i], s);
 	};
@@ -196,4 +199,8 @@ function factorial(x) {
 		return 1;
 	}
 		return x * factorial(x-1);
+}
+
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
 }
