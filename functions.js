@@ -116,7 +116,7 @@ module.exports.comb = function (len, states, rules){
 	return output;
 }
 
-module.exports.listCombName = function (s) {
+module.exports.listCombName = function (s, repeatFlag) {
 	var mexp = this;
 	if (!s||s.length<1) {return mexp.comb(0);};
 	s = s.toLowerCase();
@@ -131,6 +131,9 @@ module.exports.listCombName = function (s) {
 	for (var i = 0; i < sortedChars.length; i++) {
 		freq[i] = freqInString(sortedChars[i], s);
 	};
+	if(repeatFlag){
+		return mexp.comb(s.length, sortedChars);
+	}
 	function freqInString (c, s) {
 		var r = 0;
 		for (var i = 0; i < s.length; i++) {

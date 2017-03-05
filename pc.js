@@ -53,8 +53,9 @@ ObjPC.permute = function(string, opts) {
 	return this(string, opts);
 };
 
-ObjPC.names = function(string, opts) {
+ObjPC.names = function(string, opts={}) {
 	//return this(filtered args)
+	opts.repeatFlag = false;
 	return this(string, opts);
 };
 
@@ -70,7 +71,7 @@ ResultPC.prototype.rank = function(opts) {
 
 ResultPC.prototype.list = function(opts) {
 	//return array
-	return fx.list(this.string);
+	return fx.list(this.string, this.opts.repeatFlag===false?false:true);
 };
 
 exports = module.exports = ObjPC;
