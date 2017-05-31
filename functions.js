@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-27 18:38:23
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-02-28 15:00:08
+* @Last Modified time: 2017-05-31 13:32:22
 */
 
 'use strict';
@@ -116,6 +116,106 @@ module.exports.comb = function (len, states, rules){
 	return output;
 }
 
+module.exports.ncr = function (states, len){
+	if(!len || len<1 || len>states.length){console.log('rejected input');return []}
+	if(len>16){
+		return "out of limit, put force if you know better";
+	}
+	// var states = states || ["0","1"];
+	var pos = [];
+	for (var i = 0; i < len; i++) {
+		pos[i] = i;
+	}
+
+	var shouldBreak, str;
+	var output = [];
+	do{
+		shouldBreak = true;
+		str = "";var s=0;
+		console.log('-33---',pos);
+		for (var i = 0; i < len; i++) {
+			if(str.indexOf(states[i])<0){
+				str+= states[pos[i]];
+			}
+			// pos[i]++;
+		};
+		console.log('output', str);
+		if(str.length === len) {
+			output.push(str);
+		}
+		var set = false;
+		for (var i = len-1; i >= 0; i--) {
+			if(pos[i]<states.length-1){
+				pos[i]++;
+		console.log('--22-----',pos);
+				if(pos[i]-i ){
+					set = false;
+					var t = pos[i];
+		console.log('--11---------',pos);
+					if(t+len<states.length-1){
+						shouldBreak = false;
+					}
+					for (var k = i+1; k < len; k++) {
+						pos[k] = ++t;
+		console.log('-44---',pos);
+						if (pos[k]>states.length-1) {
+							shouldBreak = false;
+						}
+					}
+				}
+				break;
+			}
+			if(pos[i]<states.length){
+				set = true;
+				// if (i==0) {
+				// 	shouldBreak = false; break;
+				// };
+				// pos[i]=0;
+			}
+		};
+	}while(shouldBreak);
+	return output;
+}
+
+module.exports.npr = function (states, len){
+	if(!len || len<1){return []}
+	if(len>16){
+		return "out of limit, put force if you know better";
+	}
+	var states = states || ["0","1"];
+	var pos = [];
+	pos = Array(len).fill(0);
+
+	var shouldBreak, str;
+	var output = [];
+	do{
+		shouldBreak = true;
+		str = "";var s=0;
+		for (var i = 0; i < len; i++) {
+			if(str.indexOf(states[pos[i]])<0){
+				str+= states[pos[i]];
+			}
+			// pos[i]++;
+		};
+		// console.log('output', str);
+		if(str.length === len) {
+			output.push(str);
+		}
+		for (var i = len-1; i >= 0; i--) {
+			if(pos[i]<states.length-1){
+				pos[i]++; break;
+			}
+			if(pos[i]<states.length){
+				if (i==0) {
+					shouldBreak = false; break;
+				};
+				pos[i]=0;
+			}
+		};
+	}while(shouldBreak);
+	return output;
+}
+
 module.exports.listCombName = function (s, repeatFlag) {
 	var mexp = this;
 	if (!s||s.length<1) {return mexp.comb(0);};
@@ -143,6 +243,11 @@ module.exports.listCombName = function (s, repeatFlag) {
 	}
 	// console.log(sortedChars, rules);
 	return mexp.comb(s.length, sortedChars, rules);
+}
+
+module.exports.ncrList = function (chars, r, repeatFlag) {
+	if(!chars || chars.length<1){return []};
+
 }
 
 function copyArray (arr) {
