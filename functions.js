@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-27 18:38:23
 * @Last Modified by:   sushiljainam
-* @Last Modified time: 2017-05-31 13:32:22
+* @Last Modified time: 2017-05-31 15:01:09
 */
 
 'use strict';
@@ -124,56 +124,44 @@ module.exports.ncr = function (states, len){
 	// var states = states || ["0","1"];
 	var pos = [];
 	for (var i = 0; i < len; i++) {
-		pos[i] = i;
+		pos[i] = i + states.length - len;
 	}
 
 	var shouldBreak, str;
 	var output = [];
 	do{
-		shouldBreak = true;
-		str = "";var s=0;
-		console.log('-33---',pos);
+		shouldBreak = false;
+		str = "";
 		for (var i = 0; i < len; i++) {
-			if(str.indexOf(states[i])<0){
+			console.log('112',pos)
+			if(str.indexOf(states[pos[i]])<0){
 				str+= states[pos[i]];
 			}
 			// pos[i]++;
 		};
-		console.log('output', str);
-		if(str.length === len) {
-			output.push(str);
-		}
-		var set = false;
-		for (var i = len-1; i >= 0; i--) {
-			if(pos[i]<states.length-1){
-				pos[i]++;
-		console.log('--22-----',pos);
-				if(pos[i]-i ){
-					set = false;
-					var t = pos[i];
-		console.log('--11---------',pos);
-					if(t+len<states.length-1){
-						shouldBreak = false;
-					}
-					for (var k = i+1; k < len; k++) {
-						pos[k] = ++t;
-		console.log('-44---',pos);
-						if (pos[k]>states.length-1) {
-							shouldBreak = false;
-						}
-					}
-				}
+		output.push(str);
+		for (var i = 0; i < len; i++) {
+			console.log('113',pos)
+			if(pos[i]>i){
+				pos[i]--;
 				break;
+			} else {
+				if(i >= len-1){
+					console.log('114',pos)
+					shouldBreak = true;
+					break;
+				}
+				var t = pos[i+1];
+				if(t>i+1){
+					for (var j = i+1; j >= 0; j--) {
+						console.log('115',pos)
+						pos[j] = --t;
+					}
+					break;
+				}
 			}
-			if(pos[i]<states.length){
-				set = true;
-				// if (i==0) {
-				// 	shouldBreak = false; break;
-				// };
-				// pos[i]=0;
-			}
-		};
-	}while(shouldBreak);
+		}
+	}while(!shouldBreak)
 	return output;
 }
 
